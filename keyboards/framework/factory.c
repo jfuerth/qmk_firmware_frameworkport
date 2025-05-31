@@ -16,8 +16,7 @@
 enum factory_commands {
     f_emu_keypress  = 0x01, // Next byte is keycode
     f_serialnum     = 0x04, // Read device serial number
-    f_bios_mode     = 0x05, // Read device serial number
-    f_factory_mode  = 0x06, // Read device serial number
+    f_factory_mode  = 0x06, // Enable/disable factory mode based on next byte
     f_bootloader    = 0xFE,
 };
 
@@ -34,7 +33,7 @@ void emulate_rgb_keycode_press(uint16_t target_keycode) {
 }
 #endif
 
-#ifdef SERIAL_NUMBER
+#ifdef SERIAL_NUMBER // TODO remove this define and related code
 extern char ascii_serialnum[SERIALNUM_LEN+1];
 #endif
 
@@ -65,13 +64,6 @@ void handle_factory_command(uint8_t *data) {
 #else
             uprintf("Serial number unavailable\n");
 #endif
-            break;
-        case f_bios_mode:
-            if (command_data[0] == 0x01) {
-                set_bios_mode(true);
-            } else {
-                set_bios_mode(false);
-            }
             break;
         case f_factory_mode:
             enable_factory_mode(command_data[0] == 0x01);
