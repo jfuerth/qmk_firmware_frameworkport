@@ -126,20 +126,21 @@ void keyboard_post_init_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // TODO wip - just trying to manipulate the RGB matrix
-//     switch (keycode) {
-//         case KC_P7:
-//             if (record->event.pressed) {
-//                 rgb_matrix_set_color(3, RGB_GREEN);
-// //                IS31FL_RGB_set_color(3, RGB_GREEN);
-//             } else {
-//                 rgb_matrix_set_color(3, RGB_RED);
-// //                IS31FL_RGB_set_color(3, RGB_RED);
-//             }
-// //            IS31FL_update_pwm_buffers();
-//             return true;
-//         case KC_P8:
-//             rgb_matrix_set_color(3, RGB_OFF);
-//             return true;
-//     }
+    switch (keycode) {
+        case KC_P7:
+            if (record->event.pressed) {
+                rgb_matrix_mode_noeeprom(1);
+                rgb_matrix_set_color(3, RGB_GREEN);
+//                IS31FL_RGB_set_color(3, RGB_GREEN);
+            } else {
+                rgb_matrix_set_color(3, RGB_RED);
+//                IS31FL_RGB_set_color(3, RGB_RED);
+            }
+//            IS31FL_update_pwm_buffers();
+            return true;
+        case KC_P8:
+            rgb_matrix_set_color(3, RGB_OFF);
+            return true;
+    }
     return true;
 };

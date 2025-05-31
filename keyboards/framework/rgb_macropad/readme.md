@@ -1,5 +1,7 @@
 # framework/rgb_macropad
 
+This is a port of Framework's own RGB Macropad QMK firmware to the upstream QMK tree.
+
 ![framework/rgb_macropad](imgur.com image replace me!)
 
 *A short description of the keyboard/project*
@@ -34,4 +36,4 @@ Enter the bootloader in 2 ways:
   - 2 - -
   - - - -
   ```
-* **Keycode in layout**: Press the key mapped to `QK_BOOT` if it is available
+* **Keycode in layout**: Press the key mapped to `QK_BOOT` if you have defined one
